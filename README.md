@@ -12,7 +12,7 @@ The solutions are implemented in **Java and Python**, with the goal of strengthe
 
 ## 📊 Progress
 
-**4 / 22 patterns completed**
+**5 / 22 patterns completed**
 
 > Update the progress count and checkboxes as you add each solution.
 
