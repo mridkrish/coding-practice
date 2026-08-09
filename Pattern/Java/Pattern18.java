@@ -18,5 +18,7 @@ public class Pattern18 {
 
         }
 
+        sc.close();
+
     }
 }

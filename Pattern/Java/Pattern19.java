@@ -43,6 +43,9 @@ public class Pattern19 {
 
             System.err.println();
         }
+
+        sc.close();
+        
     }
     
 }

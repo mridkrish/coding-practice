@@ -44,5 +44,8 @@ public class Pattern20 {
 
             System.err.println();
         }
+
+        sc.close();
+        
     }
 }
