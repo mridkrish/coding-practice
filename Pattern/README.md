@@ -2,7 +2,7 @@
 
 ![Language](https://img.shields.io/badge/Languages-Java%20%7C%20Python-blue)
 ![Patterns](https://img.shields.io/badge/Patterns-22-orange)
-![Status](https://img.shields.io/badge/Progress-0%2F22-lightgrey)
+![Status](https://img.shields.io/badge/Progress-5%2F22-lightgrey)
 
 A structured collection of my solutions to the **22 Pattern Problems** from the pattern section of Striver's A2Z DSA roadmap.
 
