@@ -36,7 +36,7 @@ The solutions are implemented in **Java and Python**, with the goal of strengthe
 - [x] Pattern 18
 - [x] Pattern 19
 - [x] Pattern 20
-- [ ] Pattern 21
+- [x] Pattern 21
 - [ ] Pattern 22
 
 ---
