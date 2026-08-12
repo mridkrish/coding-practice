@@ -20,40 +20,61 @@ jobs:
         run: |
           python <<'PY'
           from pathlib import Path
+          import re
 
           readme = Path("Pattern/README.md")
-
           content = readme.read_text(encoding="utf-8")
 
-          lines = content.splitlines()
+          # Extract only the Progress section
+          match = re.search(
+              r'## 📊 Progress(.*?)(?=\n## |\Z)',
+              content,
+              re.DOTALL
+          )
 
-          completed = 0
-          total = 0
+          if not match:
+              raise Exception("Progress section not found")
 
-          for line in lines:
-              stripped = line.strip()
+          progress_section = match.group(1)
 
-              if stripped.startswith("- [ ] Pattern ") or stripped.startswith("- [x] Pattern ") or stripped.startswith("- [X] Pattern "):
-                  total += 1
+          # Count only Pattern checkboxes inside the Progress section
+          completed = len(
+              re.findall(
+                  r'^- \[x\] Pattern \d+$',
+                  progress_section,
+                  re.MULTILINE | re.IGNORECASE
+              )
+          )
 
-                  if stripped.startswith("- [x] Pattern ") or stripped.startswith("- [X] Pattern "):
-                      completed += 1
+          total = len(
+              re.findall(
+                  r'^- \[[ x]\] Pattern \d+$',
+                  progress_section,
+                  re.MULTILINE | re.IGNORECASE
+              )
+          )
 
           print(f"Completed: {completed}")
           print(f"Total: {total}")
           print(f"Progress: {completed}/{total}")
 
           # Update progress text
-          new_content = content.replace(
-              next(
-                  line for line in lines
-                  if line.strip().startswith("**")
-                  and "patterns completed" in line
-              ),
-              f"**{completed} / {total} patterns completed**"
+          updated_content = re.sub(
+              r'\*\*\d+ / \d+ patterns completed\*\*',
+              f'**{completed} / {total} patterns completed**',
+              content,
+              count=1
           )
 
-          readme.write_text(new_content, encoding="utf-8")
+          # Update Shields.io progress badge
+          updated_content = re.sub(
+              r'!\[Progress\]\(https://img\.shields\.io/badge/Progress-[^)]*\)',
+              f'![Progress](https://img.shields.io/badge/Progress-{completed}%2F{total}-lightgrey)',
+              updated_content,
+              count=1
+          )
+
+          readme.write_text(updated_content, encoding="utf-8")
 
           print("README progress updated.")
           PY
