@@ -68,10 +68,9 @@ jobs:
 
           # Update Shields.io progress badge
           updated_content = re.sub(
-              r'!\[Progress\]\(https://img\.shields\.io/badge/Progress-[^)]*\)',
-              f'![Progress](https://img.shields.io/badge/Progress-{completed}%2F{total}-lightgrey)',
-              updated_content,
-              count=1
+              r'https://img\.shields\.io/badge/Progress-[^) ]+',
+              f'https://img.shields.io/badge/Progress-{completed}%2F{total}-lightgrey',
+              updated_content
           )
 
           readme.write_text(updated_content, encoding="utf-8")
