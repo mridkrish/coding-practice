@@ -12,7 +12,7 @@ The solutions are implemented in **Java and Python**, with the goal of strengthe
 
 ## 📊 Progress
 
-**6 / 22 patterns completed**
+**11 / 28 patterns completed**
 
 > Update the progress count and checkboxes as you add each solution.
 
@@ -202,7 +202,7 @@ Whenever a pattern is completed:
 For example:
 
 ```markdown
-**5 / 22 patterns completed**
+**11 / 28 patterns completed**
 
 - [x] Pattern 01
 - [x] Pattern 02
