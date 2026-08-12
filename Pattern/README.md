@@ -2,7 +2,7 @@
 
 ![Language](https://img.shields.io/badge/Languages-Java%20%7C%20Python-blue)
 ![Patterns](https://img.shields.io/badge/Patterns-22-orange)
-![Status](https://img.shields.io/badge/Progress-6%2F22-lightgrey)
+![Status](https://img.shields.io/badge/Progress-5%2F22-lightgrey)
 
 A structured collection of my solutions to the **22 Pattern Problems** from the pattern section of Striver's A2Z DSA roadmap.
 
@@ -12,7 +12,7 @@ The solutions are implemented in **Java and Python**, with the goal of strengthe
 
 ## 📊 Progress
 
-**6 / 22 patterns completed**
+**5 / 22 patterns completed**
 
 > Update the progress count and checkboxes as you add each solution.
 
