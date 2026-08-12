@@ -21,5 +21,7 @@ public class Pattern22 {
 
             System.out.println("");
         }
+
+        sc.close();
     }
 }
