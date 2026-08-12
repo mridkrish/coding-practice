@@ -1,0 +1,66 @@
+name: Update DSA Progress
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  update-progress:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Calculate and update progress
+        run: |
+          python <<'PY'
+          import re
+          from pathlib import Path
+
+          readme = Path("README.md")
+          content = readme.read_text(encoding="utf-8")
+
+          # Count completed and total pattern checkboxes
+          completed = len(
+              re.findall(r'^- \[x\] Pattern \d+$', content, re.MULTILINE | re.IGNORECASE)
+          )
+
+          total = len(
+              re.findall(r'^- \[[ x]\] Pattern \d+$', content, re.MULTILINE | re.IGNORECASE)
+          )
+
+          # Update the progress count
+          updated_content = re.sub(
+              r'\*\*\d+ / \d+ patterns completed\*\*',
+              f'**{completed} / {total} patterns completed**',
+              content
+          )
+
+          readme.write_text(updated_content, encoding="utf-8")
+
+          print(f"Progress: {completed} / {total}")
+
+          if updated_content != content:
+              print("README progress updated.")
+          else:
+              print("No progress count change needed.")
+          PY
+
+      - name: Commit updated README
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add README.md
+
+          if git diff --cached --quiet; then
+            echo "No README changes to commit."
+          else
+            git commit -m "Update DSA progress"
+            git push
+          fi
